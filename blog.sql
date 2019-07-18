@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 18 2019 г., 14:24
+-- Время создания: Июл 18 2019 г., 14:42
 -- Версия сервера: 8.0.15
 -- Версия PHP: 7.3.2
 
@@ -42,7 +42,8 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id_post`, `name`, `tags`, `text`, `date`, `image`) VALUES
-(16, 'Ееесс', 'Ееесс', 'Ееесс', '2019-07-18 01:39:13', 'b8f2ea875391c1352dd3764240a16fbe.jpg');
+(16, 'Ееесс', 'Ееесс', 'Ееесс', '2019-07-18 01:39:13', 'b8f2ea875391c1352dd3764240a16fbe.jpg'),
+(17, 'Пост', '', 'Пост', '2019-07-18 14:35:56', '5d104a54e0e4bc4d2d1fa8294310cd8e.jpg');
 
 -- --------------------------------------------------------
 
@@ -88,7 +89,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
