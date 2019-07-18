@@ -1,0 +1,107 @@
+*
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+html
+{
+    width: 100%;
+    height: 100%;
+}
+
+#top
+{
+    text-align: center;
+    background-color: rgba(0,0,0,0.4);
+}
+
+#title
+{
+    font-size: 45px;
+    font-weight: bold;
+}
+
+#mainPage
+{
+    text-decoration: none;
+    background-color: grey;
+    
+    height: 52px;
+    width: 150px;
+
+    float: left;
+}
+
+#mainPage:visited
+{
+    color: blue;
+}
+
+#postWriting
+{
+    text-decoration: none;
+    float: left;
+    background-color: grey;
+    
+    margin-left: 10px;
+
+    height: 52px;
+    width: 100px;
+    line-height: 50px;
+}
+
+#postWriting:visited
+{
+    color: blue;
+}
+
+#authAndLogout
+{
+    line-height: 50px;
+    text-decoration: none;
+    background-color: grey;
+    float: right;
+
+    height: 52px;
+    width: 100px;
+
+    margin-right: 10px;
+}
+
+#username
+{
+    float: right;
+    margin-right: 20px;
+}
+
+#authAndLogout:visited
+{
+    color: blue;
+}
+
+#post
+{
+    margin: 0px auto;
+    background-color: yellow;
+    width: 90%;
+}
+
+#postName, #postDate, #postTags
+{
+    border: 1px solid black;
+    margin: 10px 0px;
+}
+
+#postText 
+{
+    border: 1px solid black;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#postImage
+{
+    width: 400px;
+    height: 200px;
+}

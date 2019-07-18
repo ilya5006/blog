@@ -1,0 +1,47 @@
+*
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+html
+{
+    height: 100%;
+    width: 100%;
+}
+
+#search
+{
+    display: flex;
+    flex-direction: row;
+}
+
+#searchText
+{
+    width: 95%;
+    height: 40px;
+}
+
+#searchButton
+{
+    width: 5%;
+}
+
+#post
+{
+    border: 1px solid black;
+    width: 95%;
+    margin: 0px auto;
+    margin-top: 10px;
+}
+
+#postTags, #postDate
+{
+    margin: 10px 0px;
+}
+
+#postImage
+{
+    width: 400px;
+    height: 200px;
+}

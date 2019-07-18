@@ -1,0 +1,87 @@
+*
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+body, html
+{
+    height: 100%;
+    width: 100%;
+}
+
+#top
+{
+    text-align: center;
+    background-color: rgba(0,0,0,0.4);
+}
+
+#title
+{
+    font-size: 45px;
+    font-weight: bold;
+}
+
+#mainPage
+{
+    text-decoration: none;
+    background-color: grey;
+    
+    height: 52px;
+    width: 150px;
+
+    float: left;
+}
+
+#mainPage:visited
+{
+    color: blue;
+}
+
+#authAndLogout
+{
+    line-height: 50px;
+    text-decoration: none;
+    background-color: grey;
+    float: right;
+
+    height: 52px;
+    width: 100px;
+
+    margin-right: 10px;
+}
+
+#username
+{
+    float: right;
+    margin-right: 20px;
+}
+
+#authAndLogout:visited
+{
+    color: blue;
+}
+
+#post
+{
+    display: flex;
+    flex-direction: column;
+
+    margin: 0px auto;
+    margin-top: 50px;
+}
+
+textarea
+{
+    height: 200px;
+}
+
+#postName, #postTags
+{
+    height: 30px;
+}
+
+#postSubmit
+{
+    height: 50px;
+}

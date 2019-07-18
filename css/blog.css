@@ -1,0 +1,72 @@
+*
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+html, body
+{
+    width: 100%;
+    height: 100vh;
+}
+
+#top
+{
+    text-align: center;
+    background-color: rgba(0,0,0,0.4);
+}
+
+#title
+{
+    font-size: 45px;
+    font-weight: bold;
+}
+
+#postWriting
+{
+    text-decoration: none;
+    float: left;
+    background-color: grey;
+    
+    height: 52px;
+    width: 100px;
+    line-height: 50px;
+}
+
+#postWriting:visited
+{
+    color: blue;
+}
+
+#authAndLogout
+{
+    line-height: 50px;
+    text-decoration: none;
+    background-color: grey;
+    float: right;
+
+    height: 52px;
+    width: 100px;
+
+    margin-right: 10px;
+}
+
+#username
+{
+    float: right;
+    margin-right: 20px;
+}
+
+#authAndLogout:visited
+{
+    color: blue;
+}
+
+#posts
+{
+    margin-top: 4px;
+
+    width: 100%;
+    height: 85vh;
+    box-sizing: border-box;
+}
