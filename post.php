@@ -22,7 +22,10 @@
             if ($_SESSION['id_user'] == 1)
                 echo "<a id='postWriting' href='postWriting.php'>Написать пост</a>";
 
-            echo "<a id='authAndLogout' href='logout.php'>ВЫЙТИ</a>";
+            if (isset($_SESSION['id_user']))
+                echo "<a id='authAndLogout' href='logout.php'>ВЫЙТИ</a>";
+            else
+                echo "<a id='authAndLogout' href='logout.php'>ВОЙТИ</a>";
             echo "<span id='username'>Вы вошли как:<br> $username</span>";            
         }
         else
