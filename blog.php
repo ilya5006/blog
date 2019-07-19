@@ -52,6 +52,7 @@
                 echo "<form action='post.php' method='POST' id='postName'>";
                     echo "<input type='submit' id='postNameButton' name='postNameButton' value='$postName'>";
                 echo "</form>";
+
                 if ($_SESSION['id_user'] == 1)
                 {
                     echo "<form method='POST' id='deletePostForm'>";
@@ -69,6 +70,7 @@
                         }
                     echo "</form>";
                 }
+                
                 echo "<img id='postImage' src='post_images/$postImage'>";
                 echo "<p id='postDate'>$postDate</p>";
                 echo "<p id='postTags'>$postTags</p>";
