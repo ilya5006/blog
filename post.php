@@ -22,10 +22,8 @@
             if ($_SESSION['id_user'] == 1)
                 echo "<a id='postWriting' href='postWriting.php'>Написать пост</a>";
 
-            if (isset($_SESSION['id_user']))
-                echo "<a id='authAndLogout' href='logout.php'>ВЫЙТИ</a>";
-            else
-                echo "<a id='authAndLogout' href='logout.php'>ВОЙТИ</a>";
+            echo "<a id='authAndLogout' href='logout.php'>ВЫЙТИ</a>";
+            
             echo "<span id='username'>Вы вошли как:<br> $username</span>";            
         }
         else
@@ -49,7 +47,12 @@
         echo "<h2 id='postName'>$postName</h2>";
         echo "<img id='postImage' src='post_images/$postImage'>";
         echo "<p id='postDate'>$postDate</p>";
-        echo "<p id='postTags'>$postTags</p>";
+
+        if ($postTags != "")
+            echo "<p id='postTags'>$postTags</p>";
+        else
+            echo "<p id='postTags'>Теги отсутствуют</p>";
+    
         echo "<p id='postText'>$postText</p>";
         ?>
     </div>

@@ -97,6 +97,11 @@ html, body
     margin-top: 10px;
 }
 
+#postText
+{
+    margin: 20px 0px;
+}
+
 #deletePostForm
 {
     display: inline-block;

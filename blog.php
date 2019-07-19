@@ -13,6 +13,7 @@
 <body>
     <div id="top">
         <span id="title">Мой блог</span>
+        
         <?
         if (isset($_SESSION['id_user']))
         {
@@ -73,7 +74,16 @@
                 
                 echo "<img id='postImage' src='post_images/$postImage'>";
                 echo "<p id='postDate'>$postDate</p>";
-                echo "<p id='postTags'>$postTags</p>";
+
+                echo "<hr>";
+
+                if ($postTags != "")
+                    echo "<p id='postTags'>$postTags</p>";
+                else
+                    echo "<p id='postTags'>Теги отсутствуют</p>";
+
+                echo "<hr>";
+                
                 echo "<p id='postText'>$postText</p>";
             echo "</div>";
         }
