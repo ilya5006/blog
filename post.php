@@ -35,9 +35,8 @@
 
     <div id="post">
         <?
-        // $postId = $_POST['id_post'];
-        $postId = 16;
-        $postInfoQuery = "SELECT * FROM posts WHERE id_post = '$postId'";
+        $postName = $_SESSION['postName'];
+        $postInfoQuery = "SELECT * FROM posts WHERE name LIKE '%$postName%'";
         $postInfoResult = mysqli_query($link, $postInfoQuery);
         $postInfoResult = mysqli_fetch_assoc($postInfoResult);
 

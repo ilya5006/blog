@@ -1,6 +1,12 @@
 <?
     session_start();
     require_once "connection.php";
+
+    if (isset($_POST['postNameButton']))
+    {
+        $_SESSION['postName'] = $_POST['postNameButton'];
+        header("Location: post.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -31,16 +37,9 @@
             $postImage = $postsInfoResult['image'];
 
             echo "<div id='post'>";
-                echo "<h2 id='postName'><a id='postNameLink' href=''>$postName</a></h2>";
-                ?>
-                <script>
-                    let postName = document.querySelector("#postNameLink");
-                    postName.addEventListener("click", function(event)
-                    {
-                        event.preventDefault();
-                    });
-                </script>
-                <?
+                echo "<form method='POST' id='postName'>";
+                    echo "<input type='submit' id='postNameButton' name='postNameButton' value='$postName'>";
+                echo "</form>";
                 if ($_SESSION['id_user'] == 1)
                 {
                     echo "<form method='POST' id='deletePostForm'>";

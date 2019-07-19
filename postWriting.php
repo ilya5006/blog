@@ -35,7 +35,7 @@
         <input id="postName" type="text" name="postName" placeholder="Введите навзание поста" required>
         <textarea id="postText" name="postText" placeholder="Введите текст" required></textarea>
         <input id="postTags" type="text" name="postTags" placeholder="Введите теги">
-        <input id="postImage" type="file" name="postImage">
+        <input id="postImage" type="file" name="postImage" required>
         <input id="postSubmit" type="submit">
     </form>
 </body>
