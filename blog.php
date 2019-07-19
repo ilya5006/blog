@@ -30,14 +30,25 @@
         ?>
     </div>
 
-    <form id="search" action="" methd="POST">
+    <form id="search" action="" method="POST">
         <input type="text" id="searchText" name="searchText">
         <input type="submit" id="searchButton" value="Найти" name="searchButton">
     </form>
 
     <div id="posts">
         <?
-        $postsInfoQuery = "SELECT * FROM posts ORDER BY id_post DESC";
+
+        $searchTags = "";
+
+        if (isset($_POST['searchButton']))
+        {
+            $tags = $_POST['searchText'];
+            $searchTags = "WHERE tags LIKE '%$tags%'";
+
+            unset($_POST['searchButton']);
+        }
+
+        $postsInfoQuery = "SELECT * FROM posts " . $searchTags . "ORDER BY id_post DESC";
         $postsInfoResultQuery = mysqli_query($link, $postsInfoQuery);
 
         while($postsInfoResult = mysqli_fetch_assoc($postsInfoResultQuery))
