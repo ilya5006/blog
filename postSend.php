@@ -75,8 +75,8 @@
 
     $postImage = $name . $format;
 
-    $query = "INSERT INTO posts VALUES (NULL, '$postName', '$postTags', '$postText', '$postDate', '$postImage')";
-    $res = mysqli_query($link, $query);
+    $postSendQuery = "INSERT INTO posts VALUES (NULL, '$postName', '$postTags', '$postText', '$postDate', '$postImage')";
+    mysqli_query($link, $postSendQuery);
 
     header("Location: blog.php");
 ?>

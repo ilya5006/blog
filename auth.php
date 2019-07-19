@@ -7,16 +7,16 @@
         $login = $_POST['login'];
         $password = $_POST['password'];
 
-        $queryAuth = "SELECT * FROM users WHERE login = '$login' AND password = '$password'";
-        $resultAuth = mysqli_query($link, $queryAuth);
-        $resultAuth = mysqli_fetch_assoc($resultAuth);
+        $authQuery = "SELECT * FROM users WHERE login = '$login' AND password = '$password'";
+        $authResult = mysqli_query($link, $authQuery);
+        $authResult = mysqli_fetch_assoc($authResult);
 
-        if (isset($resultAuth))
+        if (isset($authResult))
         {
-            $_SESSION['id_user'] = $resultAuth['id_user'];
-            $_SESSION['login'] = $resultAuth['login'];
+            $_SESSION['id_user'] = $authResult['id_user'];
+            $_SESSION['login'] = $authResult['login'];
 
-            if ($resultAuth['id_user'])
+            if ($authResult['id_user'])
                 header("Location: blog.php");
         }
         else
