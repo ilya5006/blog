@@ -38,7 +38,6 @@
         $postInfoResult = mysqli_query($link, $postInfoQuery);
         $postInfoResult = mysqli_fetch_assoc($postInfoResult);
 
-        $postName = $postInfoResult['name'];
         $postTags = $postInfoResult['tags'];
         $postText = $postInfoResult['text'];
         $postDate = $postInfoResult['date'];

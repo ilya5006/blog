@@ -6,6 +6,7 @@
     $postText = $_POST['postText'];
     $postText = htmlentities(mysqli_real_escape_string($link, $postText));
     $postTags = $_POST['postTags'];
+    $postTags = htmlentities(mysqli_real_escape_string($link, $postTags));
     $postDate = new DateTime();
     $postDate = $postDate->format("Y-m-d H:i:s");
     
