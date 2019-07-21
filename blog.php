@@ -43,7 +43,6 @@
 
     <div id="posts">
         <?
-        $searchTags = "";
         $postsInfoQueryResults = [];
 
         if (isset($_POST['searchButton']))

@@ -52,7 +52,7 @@
     $image = getimagesize($filePath);
 
     // Зададим ограничения для картинок
-    $limitBytes  = 1024 * 1024 * 5;
+    $limitBytes  = 1024 * 1024 * 5; // 5 MB
     $limitWidth  = 1280;
     $limitHeight = 768;
 
