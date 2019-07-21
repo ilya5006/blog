@@ -17,12 +17,14 @@
             $_SESSION['login'] = $authResult['login'];
 
             if ($authResult['id_user'])
+            {
                 header("Location: blog.php");
+            }
         }
         else
+        {
             echo "<p id='error'>НЕВЕРНЫЙ ЛОГИН ИЛИ ПАРОЛЬ</p>";
-
-        unset($_POST['enter']);
+        }
     }
 ?>
 

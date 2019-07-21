@@ -28,7 +28,7 @@
             UPLOAD_ERR_CANT_WRITE => 'Не удалось записать файл на диск.',
             UPLOAD_ERR_EXTENSION  => 'PHP-расширение остановило загрузку файла.',
         ];
-
+        
         // Зададим неизвестную ошибку
         $unknownMessage = 'При загрузке файла произошла неизвестная ошибка.';
 
@@ -51,8 +51,9 @@
     // Результат функции запишем в переменную
     $image = getimagesize($filePath);
 
-    // Зададим ограничения для картинок
-    $limitBytes  = 1024 * 1024 * 5; // 5 MB
+    // Зададим ограничения для картинок в 5 MB
+    $limitBytes  = 1024 * 1024 * 5;
+                 // KB     MB     
     $limitWidth  = 1280;
     $limitHeight = 768;
 
@@ -82,7 +83,8 @@
     mkdir($folderForPostImage);
 
     // Переместим картинку с новым именем и расширением в папку /post_images
-    if (!move_uploaded_file($filePath, __DIR__ . '/post_images/' . $newPostId . '/' . $name . $format)) {
+    if (!move_uploaded_file($filePath, __DIR__ . '/post_images/' . $newPostId . '/' . $name . $format)) 
+    {
         die('При записи изображения на диск произошла ошибка.');
     }
 

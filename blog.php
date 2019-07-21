@@ -2,9 +2,8 @@
     session_start();
     require_once "connection.php";
 
-    if (isset($_POST['postNameButton']) && $postName == $_POST['postNameButton'])
+    if (isset($_POST['postNameButton']))
     {
-        $_SESSION['postName'] = $_POST['postNameButton'];
         header("Location: post.php");
     }
 ?>
@@ -81,6 +80,10 @@
                 echo "<div id='post'>";
                     echo "<form method='POST' id='postName'>";
                         echo "<input type='submit' id='postNameButton' name='postNameButton' value='$postName'>";
+                        if (isset($_POST['postNameButton']) && $postName == $_POST['postNameButton'])
+                        {
+                            $_SESSION['postName'] = $postName;
+                        }
                     echo "</form>";
                     
                     if ($_SESSION['id_user'] == 1)
@@ -109,10 +112,14 @@
                     echo "<hr>";
 
                     if ($postTags != "")
+                    {
                         echo "<p id='postTags'>$postTags</p>";
+                    }
                     else
+                    {
                         echo "<p id='postTags'>Теги отсутствуют</p>";
-
+                    }
+                    
                     echo "<hr>";
                     
                     echo "<p id='postText'>$postText</p>";

@@ -20,14 +20,18 @@
             $username = $_SESSION['login'];
             
             if ($_SESSION['id_user'] == 1)
+            {
                 echo "<a id='postWriting' href='postWriting.php'>Написать пост</a>";
+            }
 
             echo "<a id='authAndLogout' href='logout.php'>ВЫЙТИ</a>";
             
             echo "<span id='username'>Вы вошли как:<br> $username</span>";            
         }
         else
+        {
             echo "<a id='authAndLogout' href='auth.php'>ВОЙТИ</a>";
+        }
         ?>
     </div>
 
@@ -38,13 +42,14 @@
         $postInfoResult = mysqli_query($link, $postInfoQuery);
         $postInfoResult = mysqli_fetch_assoc($postInfoResult);
 
+        $postId = $postInfoResult['id_post'];
         $postTags = $postInfoResult['tags'];
         $postText = $postInfoResult['text'];
         $postDate = $postInfoResult['date'];
         $postImage = $postInfoResult['image'];
 
         echo "<h2 id='postName'>$postName</h2>";
-        echo "<img id='postImage' src='post_images/$postImage'>";
+        echo "<img id='postImage' src='post_images/$postId/$postImage'>";
         echo "<p id='postDate'>$postDate</p>";
 
         if ($postTags != "")
