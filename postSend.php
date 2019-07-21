@@ -70,14 +70,25 @@
     // Сократим .jpeg до .jpg
     $format = str_replace('jpeg', 'jpg', $extension);
 
+    // Возьмём id последнего на данный момент поста
+    $lastPostIdQuery = "SELECT id_post FROM posts ORDER BY id_post DESC";
+    $lastPostIdQueryResult = mysqli_query($link, $lastPostIdQuery); 
+    $lastPostId = mysqli_fetch_row($lastPostIdQueryResult);
+    $lastPostId = $lastPostId[0];
+
+    $newPostId = ++$lastPostId;
+
+    $folderForPostImage = __DIR__ . '/post_images/' . $newPostId;
+    mkdir($folderForPostImage);
+
     // Переместим картинку с новым именем и расширением в папку /post_images
-    if (!move_uploaded_file($filePath, __DIR__ . '/post_images/' . $name . $format)) {
+    if (!move_uploaded_file($filePath, __DIR__ . '/post_images/' . $newPostId . '/' . $name . $format)) {
         die('При записи изображения на диск произошла ошибка.');
     }
 
     $postImage = $name . $format;
 
-    $postSendQuery = "INSERT INTO posts VALUES (NULL, '$postName', '$postTags', '$postText', '$postDate', '$postImage')";
+    $postSendQuery = "INSERT INTO posts VALUES ($newPostId, '$postName', '$postTags', '$postText', '$postDate', '$postImage')";
     mysqli_query($link, $postSendQuery);
 
     header("Location: blog.php");

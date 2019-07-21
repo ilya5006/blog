@@ -83,25 +83,28 @@
                     echo "<form method='POST' id='postName'>";
                         echo "<input type='submit' id='postNameButton' name='postNameButton' value='$postName'>";
                     echo "</form>";
+                    
                     if ($_SESSION['id_user'] == 1)
                     {
                         echo "<form method='POST' id='deletePostForm'>";
                             echo "<input type='submit' id='deletePostIcon' name='deletePost' value='$postId'>";
-                            $deletePostButton = $_POST['deletePost'];
 
-                            if (isset($deletePostButton) && $postId == $deletePostButton)
+                            if (isset($_POST['deletePost']) && $postId == $_POST['deletePost'])
                             {
-                                $imagePath = __DIR__ . "/post_images/" . $postImage;
+                                $imagePath = __DIR__ . '/post_images/' . $postId . '/' . $postImage;
+                                $dirPath = __DIR__ . '/post_images/' . $postId; 
                                 unlink($imagePath);
+                                rmdir($dirPath);
 
                                 $deletePostQuery = "DELETE FROM posts WHERE id_post = '$postId'";
                                 mysqli_query($link, $deletePostQuery);
                                 echo "<meta http-equiv='refresh' content='0'>";
                             }
+                            
                         echo "</form>";
                     }
 
-                    echo "<img id='postImage' src='post_images/$postImage'>";
+                    echo "<img id='postImage' src='post_images/$postId/$postImage'>";
                     echo "<p id='postDate'>$postDate</p>";
 
                     echo "<hr>";
