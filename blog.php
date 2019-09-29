@@ -1,4 +1,4 @@
-<?
+<?php
     session_start();
     require_once "./php/database.php";
 
@@ -19,7 +19,7 @@
     <div id="top">
         <span id="title">Мой блог</span>
         
-        <?
+        <?php
         if (isset($_SESSION['id_user']))
         {
             $username = $_SESSION['login'];
@@ -41,7 +41,7 @@
     </form>
 
     <div id="posts">
-        <?
+        <?php
         $postsInfoQueryResults = [];
 
         if (isset($_POST['searchButton']))
@@ -74,19 +74,19 @@
                 $postDate = $data['date'];
                 $postImage = $data['image'];
 
-                echo "<div id='post'>";
-                    echo "<form method='POST' id='postName'>";
-                        echo "<input type='submit' id='postNameButton' name='postNameButton' value='$postName'>";
+                echo "<div class='post'>";
+                    echo "<form method='POST' class='postName'>";
+                        echo "<input type='submit' class='postNameButton' name='postNameButton' value='$postName'>";
                         if (isset($_POST['postNameButton']) && $postName == $_POST['postNameButton'])
                         {
                             $_SESSION['postName'] = $postName;
                         }
                     echo "</form>";
                     
-                    if ($_SESSION['id_user'] == 1)
+                    if ($_SESSION['id_user'] == 1) // is user admin? 
                     {
-                        echo "<form method='POST' id='deletePostForm'>";
-                            echo "<input type='submit' id='deletePostIcon' name='deletePost' value='$postId'>";
+                        echo "<form method='POST' class='deletePostForm'>";
+                            echo "<input type='submit' class='deletePostIcon' name='deletePost' value='$postId'>";
 
                             if (isset($_POST['deletePost']) && $postId == $_POST['deletePost'])
                             {
@@ -102,19 +102,19 @@
                         echo "</form>";
                     }
 
-                    echo "<img id='postImage' src='post_images/$postId/$postImage'>";
-                    echo "<p id='postDate'>$postDate</p>";
+                    echo "<img class='postImage' src='post_images/$postId/$postImage'>";
+                    echo "<p class='postDate'>$postDate</p>";
 
                     echo "<hr>";
 
                     if ($postTags != "")
                     {
-                        echo "<p id='postTags'>$postTags</p>";
+                        echo "<p class='postTags'>$postTags</p>";
                     }
                     
                     echo "<hr>";
                     
-                    echo "<p id='postText'>$postText</p>";
+                    echo "<p class='postText'>$postText</p>";
                 echo "</div>";
             }
         }

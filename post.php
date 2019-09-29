@@ -1,4 +1,4 @@
-<?
+<?php
     session_start();
     require_once "./php/database.php";
 ?>
@@ -14,7 +14,7 @@
     <div id="top">
         <span id="title">Мой блог</span>
         <a id="mainPage" href="blog.php">Вернуться на главную</a>
-        <?
+        <?php
         if (isset($_SESSION['id_user']))
         {
             $username = $_SESSION['login'];
@@ -36,7 +36,7 @@
     </div>
 
     <div id="post">
-        <?
+        <?php
         $postName = $_SESSION['postName'];
 
         $postInfoResult = Database::query("SELECT * FROM posts WHERE name LIKE '%$postName%'");
