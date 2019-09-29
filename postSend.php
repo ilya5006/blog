@@ -1,6 +1,6 @@
 <?
     session_start();
-    include "connection.php";
+    require_once "./php/database.php";
 
     $postName = $_POST['postName'];
     $postText = $_POST['postText'];

@@ -1,6 +1,6 @@
 <?
     session_start();
-    require_once "connection.php";
+    require_once "./php/database.php";
 ?>
 
 <!DOCTYPE html>
