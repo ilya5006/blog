@@ -41,4 +41,10 @@
             $sth->execute();
         }
     }
+
+    // Для вывода данных используется такая конструкция:
+    // foreach ($sql = DB::query("SELECT * FROM users") as $data)
+    // {
+    //    echo $data['user_email'];
+    // }
 ?>

@@ -47,13 +47,11 @@
         if (isset($_POST['searchButton']))
         {
             $tags = $_POST['searchText'];
-            $tags = htmlentities(mysqli_real_escape_string($link, $tags));
             $tagsArray = explode(", ", $tags);
             
             for ($i = 0; $i < count($tagsArray); $i++)
             {
-                $postsInfoQuery = "SELECT * FROM posts WHERE tags LIKE '%$tagsArray[$i]%' ORDER BY id_post DESC";
-                $postsInfoQueryResult = mysqli_query($link, $postsInfoQuery);
+                $postsInfoQueryResult = Database::queryAll("SELECT * FROM posts WHERE tags LIKE '%$tagsArray[$i]%' ORDER BY id_post DESC");
                 array_push($postsInfoQueryResults, $postsInfoQueryResult);
             }
 
@@ -61,21 +59,20 @@
         }
         else
         {
-            $postsInfoQuery = "SELECT * FROM posts ORDER BY id_post DESC";
-            $postsInfoQueryResult = mysqli_query($link, $postsInfoQuery);
+            $postsInfoQueryResult = Database::queryAll("SELECT * FROM posts ORDER BY id_post DESC");
             array_push($postsInfoQueryResults, $postsInfoQueryResult);
         }
 
         for ($i = 0; $i < count($postsInfoQueryResults); $i++)
         {
-            while ($postsInfoResult = mysqli_fetch_assoc($postsInfoQueryResults[$i]))
+            foreach ($postsInfoQueryResults[$i] as $data)
             {
-                $postId = $postsInfoResult['id_post'];
-                $postName = $postsInfoResult['name'];
-                $postTags = $postsInfoResult['tags'];
-                $postText = $postsInfoResult['text'];
-                $postDate = $postsInfoResult['date'];
-                $postImage = $postsInfoResult['image'];
+                $postId = $data['id_post'];
+                $postName = $data['name'];
+                $postTags = $data['tags'];
+                $postText = $data['text'];
+                $postDate = $data['date'];
+                $postImage = $data['image'];
 
                 echo "<div id='post'>";
                     echo "<form method='POST' id='postName'>";
@@ -98,8 +95,7 @@
                                 unlink($imagePath);
                                 rmdir($dirPath);
 
-                                $deletePostQuery = "DELETE FROM posts WHERE id_post = '$postId'";
-                                mysqli_query($link, $deletePostQuery);
+                                $deletePostQuery = Database::queryExecute("DELETE FROM posts WHERE id_post = '$postId'");
                                 echo "<meta http-equiv='refresh' content='0'>";
                             }
                             
@@ -114,10 +110,6 @@
                     if ($postTags != "")
                     {
                         echo "<p id='postTags'>$postTags</p>";
-                    }
-                    else
-                    {
-                        echo "<p id='postTags'>Теги отсутствуют</p>";
                     }
                     
                     echo "<hr>";

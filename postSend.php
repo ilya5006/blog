@@ -4,9 +4,7 @@
 
     $postName = $_POST['postName'];
     $postText = $_POST['postText'];
-    $postText = htmlentities(mysqli_real_escape_string($link, $postText));
     $postTags = $_POST['postTags'];
-    $postTags = htmlentities(mysqli_real_escape_string($link, $postTags));
     $postDate = new DateTime();
     $postDate = $postDate->format("Y-m-d H:i:s");
     
@@ -72,10 +70,8 @@
     $format = str_replace('jpeg', 'jpg', $extension);
 
     // Возьмём id последнего на данный момент поста
-    $lastPostIdQuery = "SELECT id_post FROM posts ORDER BY id_post DESC";
-    $lastPostIdQueryResult = mysqli_query($link, $lastPostIdQuery); 
-    $lastPostId = mysqli_fetch_row($lastPostIdQueryResult);
-    $lastPostId = $lastPostId[0];
+    $lastPostId = Database::query("SELECT id_post FROM posts ORDER BY id_post DESC");
+    $lastPostId = $lastPostId['id_post'];
 
     $newPostId = ++$lastPostId;
 
@@ -90,8 +86,7 @@
 
     $postImage = $name . $format;
 
-    $postSendQuery = "INSERT INTO posts VALUES ($newPostId, '$postName', '$postTags', '$postText', '$postDate', '$postImage')";
-    mysqli_query($link, $postSendQuery);
+    $postSend = Database::queryExecute("INSERT INTO posts VALUES ($newPostId, '$postName', '$postTags', '$postText', '$postDate', '$postImage')");
 
     header("Location: blog.php");
 ?>

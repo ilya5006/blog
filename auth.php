@@ -7,9 +7,7 @@
         $login = $_POST['login'];
         $password = $_POST['password'];
 
-        $authQuery = "SELECT * FROM users WHERE login = '$login' AND password = '$password'";
-        $authResult = mysqli_query($link, $authQuery);
-        $authResult = mysqli_fetch_assoc($authResult);
+        $authResult = Database::query("SELECT * FROM users WHERE login = '$login' AND password = '$password'");
 
         if (isset($authResult))
         {

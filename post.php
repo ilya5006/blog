@@ -38,9 +38,8 @@
     <div id="post">
         <?
         $postName = $_SESSION['postName'];
-        $postInfoQuery = "SELECT * FROM posts WHERE name LIKE '%$postName%'";
-        $postInfoResult = mysqli_query($link, $postInfoQuery);
-        $postInfoResult = mysqli_fetch_assoc($postInfoResult);
+
+        $postInfoResult = Database::query("SELECT * FROM posts WHERE name LIKE '%$postName%'");
 
         $postId = $postInfoResult['id_post'];
         $postTags = $postInfoResult['tags'];
@@ -53,9 +52,10 @@
         echo "<p id='postDate'>$postDate</p>";
 
         if ($postTags != "")
+        {
             echo "<p id='postTags'>$postTags</p>";
-        else
-            echo "<p id='postTags'>Теги отсутствуют</p>";
+        }
+            
     
         echo "<p id='postText'>$postText</p>";
         ?>
