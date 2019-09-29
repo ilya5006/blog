@@ -1,8 +1,44 @@
 <?
-    $address = "127.0.0.1";
-    $login = "root";
-    $password = "";
-    $database = "blog";
+    class Database
+    {
+        public static $dbh;
 
-    $link = mysqli_connect($address, $login, $password, $database);
+        public static function getDbh()
+        {
+            $host = "localhost";
+            $dbname = "blog";
+            $user = "root";
+            $pass = "";
+
+            self::$dbh = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+            return self::$dbh;
+        }
+
+        // Возвращает одномерный массив
+        public static function query($query)
+        {
+            $sth = self::getDbh()->prepare($query);
+            $sth->execute();
+            $data = $sth->fetch(PDO::FETCH_ASSOC);
+
+            return $data;
+        }
+
+        // Возвращает двумерный массив
+        public static function queryAll($query)
+        {
+            $sth = self::getDbh()->prepare($query);
+            $sth->execute();
+            $data = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+            return $data;
+        }
+
+        // Выполнение запросов, которые не требуют дальнейшего возвращения результата
+        public static function queryExecute($query)
+        {
+            $sth = self::getDbh()->prepare("$query");
+            $sth->execute();
+        }
+    }
 ?>
