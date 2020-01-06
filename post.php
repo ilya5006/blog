@@ -39,7 +39,8 @@
         <?php
         $postName = $_SESSION['postName'];
 
-        $postInfoResult = Database::query("SELECT * FROM posts WHERE name LIKE '%$postName%'");
+        $postInfoResult = $mysqli->query("SELECT * FROM posts WHERE name LIKE '%$postName%'");
+        $postInfoResult = $postInfoResult->fetch_assoc();
 
         $postId = $postInfoResult['id_post'];
         $postTags = $postInfoResult['tags'];

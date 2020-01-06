@@ -51,7 +51,7 @@
             
             for ($i = 0; $i < count($tagsArray); $i++)
             {
-                $postsInfoQueryResult = Database::queryAll("SELECT * FROM posts WHERE tags LIKE '%$tagsArray[$i]%' ORDER BY id_post DESC");
+                $postsInfoQueryResult = $mysqli->query("SELECT * FROM posts WHERE tags LIKE '%$tagsArray[$i]%' ORDER BY id_post DESC");
                 array_push($postsInfoQueryResults, $postsInfoQueryResult);
             }
 
@@ -59,7 +59,7 @@
         }
         else
         {
-            $postsInfoQueryResult = Database::queryAll("SELECT * FROM posts ORDER BY id_post DESC");
+            $postsInfoQueryResult = $mysqli->query("SELECT * FROM posts ORDER BY id_post DESC");
             array_push($postsInfoQueryResults, $postsInfoQueryResult);
         }
 
@@ -95,7 +95,7 @@
                                 unlink($imagePath);
                                 rmdir($dirPath);
 
-                                $deletePostQuery = Database::queryExecute("DELETE FROM posts WHERE id_post = '$postId'");
+                                $deletePostQuery = $mysqli->query("DELETE FROM posts WHERE id_post = '$postId'");
                                 echo "<meta http-equiv='refresh' content='0'>";
                             }
                             
