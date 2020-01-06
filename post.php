@@ -56,8 +56,7 @@
         {
             echo "<p id='postTags'>$postTags</p>";
         }
-            
-    
+
         echo "<p id='postText'>$postText</p>";
         ?>
     </div>

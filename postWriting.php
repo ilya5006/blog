@@ -1,16 +1,20 @@
 <?php
     session_start();
-    require_once "./php/database.php";
+    require_once "./model/php/database.php";
 
-    if ($_SESSION['id_user'] != 1)
+    $idUser = $_SESSION['id_user'];
+    if ($idUser!= 1)
         header("Location: index.php");
+        
+    $username = $mysqli->query("SELECT login FROM users WHERE id_user = '$idUser'");
+    $username = $username->fetch_row()[0];
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Написание поста</title>
     <link rel="stylesheet" href="css/postWriting.css">
 </head>
 <body>
@@ -19,13 +23,10 @@
         <a id="mainPage" href="blog.php">Вернуться на главную</a>
         <a id='authAndLogout' href='logout.php'>ВЫЙТИ</a>
         
-        <?php
-        $username = $_SESSION['login'];
-        echo "<span id='username'>Вы вошли как:<br> $username</span>";
-        ?>
+        <span id='username'>Вы вошли как:<br> <?php echo $username; ?> </span>
     </div>
 
-    <form action="postSend.php" method="POST" enctype="multipart/form-data" id="post">
+    <form action="./model/php/postSend.php" method="POST" enctype="multipart/form-data" id="post">
         <input id="postName" type="text" name="postName" placeholder="Введите навзание поста" required>
         <textarea id="postText" name="postText" placeholder="Введите текст" required></textarea>
         <input id="postTags" type="text" name="postTags" placeholder="Введите теги">

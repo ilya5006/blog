@@ -1,11 +1,9 @@
 <?php
     session_start();
-    require_once "./php/database.php";
+    require_once "./model/php/database.php";
 
-    if (isset($_POST['postNameButton']))
-    {
-        header("Location: post.php");
-    }
+    $userId = $_SESSION['id_user'];
+    $isUserAdmin = $_SESSION['id_user'] == 1;
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +12,7 @@
     <meta charset="UTF-8">
     <title>Блог</title>
     <link rel="stylesheet" href="css/blog.css">
+    <script src="./model/js/postsOutput.js" defer></script>
 </head>
 <body>
     <div id="top">
@@ -22,9 +21,10 @@
         <?php
         if (isset($_SESSION['id_user']))
         {
-            $username = $_SESSION['login'];
+            $username = $mysqli->query("SELECT login FROM users WHERE id_user = '$userId'");
+            $username = $username->fetch_row()[0];
             
-            if ($_SESSION['id_user'] == 1)
+            if ($isUserAdmin)
                 echo "<a id='postWriting' href='postWriting.php'>Написать пост</a>";
 
             echo "<a id='authAndLogout' href='logout.php'>ВЫЙТИ</a>";
@@ -35,88 +35,53 @@
         ?>
     </div>
 
-    <form id="search" action="" method="POST">
-        <input type="text" id="searchText" name="searchText">
+    <form id="search">
+        <input type="text" id="searchText" placeholder="Поиск" name="searchText">
         <input type="submit" id="searchButton" value="Найти" name="searchButton">
     </form>
 
     <div id="posts">
         <?php
-        $postsInfoQueryResults = [];
+        
+        $posts = $mysqli->query("SELECT * FROM posts ORDER BY id_post DESC");
 
-        if (isset($_POST['searchButton']))
+        while ($postInfo = $posts->fetch_assoc())
         {
-            $tags = $_POST['searchText'];
-            $tagsArray = explode(", ", $tags);
-            
-            for ($i = 0; $i < count($tagsArray); $i++)
-            {
-                $postsInfoQueryResult = $mysqli->query("SELECT * FROM posts WHERE tags LIKE '%$tagsArray[$i]%' ORDER BY id_post DESC");
-                array_push($postsInfoQueryResults, $postsInfoQueryResult);
-            }
+            $postId = $postInfo['id_post'];
+            $postName = $postInfo['name'];
+            $postTags = $postInfo['tags'];
+            $postText = $postInfo['text'];
+            $postDate = $postInfo['date'];
+            $postImage = $postInfo['image'];
 
-            unset($_POST['searchButton']);
-        }
-        else
-        {
-            $postsInfoQueryResult = $mysqli->query("SELECT * FROM posts ORDER BY id_post DESC");
-            array_push($postsInfoQueryResults, $postsInfoQueryResult);
-        }
+            echo "<div class='post'>";
+                echo "<form method='POST' action='./post.php' class='postName'>";
+                    echo "<input type='submit' class='postNameButton' name='postNameButton' value='$postName'>";
+                    echo "<input type='text' value='$postId' name='post_id' style='display: none;'>";
+                echo "</form>";
+                
+                if ($isUserAdmin)
+                {
+                echo "<form method='POST' action='./model/php/deletePost.php' class='deletePostForm'>";
+                    echo "<input type='submit' class='deletePostIcon' name='deletePost' value='$postId'>";
+                echo "</form>";
+                }
 
-        for ($i = 0; $i < count($postsInfoQueryResults); $i++)
-        {
-            foreach ($postsInfoQueryResults[$i] as $data)
-            {
-                $postId = $data['id_post'];
-                $postName = $data['name'];
-                $postTags = $data['tags'];
-                $postText = $data['text'];
-                $postDate = $data['date'];
-                $postImage = $data['image'];
-
-                echo "<div class='post'>";
-                    echo "<form method='POST' class='postName'>";
-                        echo "<input type='submit' class='postNameButton' name='postNameButton' value='$postName'>";
-                        if (isset($_POST['postNameButton']) && $postName == $_POST['postNameButton'])
-                        {
-                            $_SESSION['postName'] = $postName;
-                        }
-                    echo "</form>";
-                    
-                    if ($_SESSION['id_user'] == 1) // is user admin? 
-                    {
-                        echo "<form method='POST' class='deletePostForm'>";
-                            echo "<input type='submit' class='deletePostIcon' name='deletePost' value='$postId'>";
-
-                            if (isset($_POST['deletePost']) && $postId == $_POST['deletePost'])
-                            {
-                                $imagePath = __DIR__ . '/post_images/' . $postId . '/' . $postImage;
-                                $dirPath = __DIR__ . '/post_images/' . $postId; 
-                                unlink($imagePath);
-                                rmdir($dirPath);
-
-                                $deletePostQuery = $mysqli->query("DELETE FROM posts WHERE id_post = '$postId'");
-                                echo "<meta http-equiv='refresh' content='0'>";
-                            }
-                            
-                        echo "</form>";
-                    }
-
+                if (isset($postImage))
                     echo "<img class='postImage' src='post_images/$postId/$postImage'>";
-                    echo "<p class='postDate'>$postDate</p>";
+                echo "<p class='postDate'>$postDate</p>";
 
-                    echo "<hr>";
+                echo "<hr>";
 
-                    if ($postTags != "")
-                    {
-                        echo "<p class='postTags'>$postTags</p>";
-                    }
-                    
-                    echo "<hr>";
-                    
-                    echo "<p class='postText'>$postText</p>";
-                echo "</div>";
-            }
+                if ($postTags != "")
+                {
+                    echo "<p class='postTags'>$postTags</p>";
+                }
+                
+                echo "<hr>";
+                
+                echo "<p class='postText'>$postText</p>";
+            echo "</div>";
         }
         ?>
     </div>
