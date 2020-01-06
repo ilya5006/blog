@@ -5,7 +5,7 @@
     $login = $_POST['login'];
     $password = $_POST['password'];
 
-    $authResult = Database::query("SELECT * FROM users WHERE login = '$login' AND password = '$password'");
+    $authResult = Database::query("SELECT id_user FROM users WHERE login = '$login' AND password = '$password'")['id_user'];
 
     if (isset($authResult))
     {
