@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "./php/database.php";
+    require_once "./database.php";
 
     $login = $_POST['login'];
     $password = $_POST['password'];
@@ -11,7 +11,7 @@
 
     if (isset($authResult))
     {
-        $_SESSION['id_user'] = $authResult['id_user'];
+        $_SESSION['id_user'] = $authResult;
 
         header("Location: ../../blog.php");
     }
