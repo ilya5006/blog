@@ -8,8 +8,7 @@
     $postDate = date('Y-m-d H:i:s');
 
     // Возьмём id последнего на данный момент поста
-    $lastPostId = $mysqli->query("SELECT id_post FROM posts ORDER BY id_post DESC");
-    $lastPostId = $lastPostId->fetch_assoc();
+    $lastPostId = Database::query("SELECT id_post FROM posts ORDER BY id_post DESC");
     $lastPostId = (int)$lastPostId['id_post'];
 
     $newPostId = ++$lastPostId;
@@ -93,11 +92,11 @@
 
         $postImage = $name . $format;
 
-        $mysqli->query("INSERT INTO posts VALUES ($newPostId, '$postName', '$postTags', '$postText', '$postDate', '$postImage')");
+        Database::queryExecute("INSERT INTO posts VALUES ($newPostId, '$postName', '$postTags', '$postText', '$postDate', '$postImage')");
     }
     else
     {
-        $mysqli->query("INSERT INTO posts VALUES ($newPostId, '$postName', '$postTags', '$postText', '$postDate', NULL)");
+        Database::queryExecute("INSERT INTO posts VALUES ($newPostId, '$postName', '$postTags', '$postText', '$postDate', NULL)");
     }
 
     header("Location: ../../blog.php");

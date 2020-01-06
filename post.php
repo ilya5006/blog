@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "./php/database.php";
+    require_once "./model/php/database.php";
 ?>
 
 <!DOCTYPE html>
@@ -37,10 +37,8 @@
 
     <div id="post">
         <?php
-        $postName = $_SESSION['postName'];
-
-        $postInfoResult = $mysqli->query("SELECT * FROM posts WHERE name LIKE '%$postName%'");
-        $postInfoResult = $postInfoResult->fetch_assoc();
+        $postId = $_POST['post_id'];
+        $postInfoResult = Database::query("SELECT * FROM posts WHERE id_post = '$postId'");
 
         $postId = $postInfoResult['id_post'];
         $postTags = $postInfoResult['tags'];
@@ -49,7 +47,10 @@
         $postImage = $postInfoResult['image'];
 
         echo "<h2 id='postName'>$postName</h2>";
-        echo "<img id='postImage' src='post_images/$postId/$postImage'>";
+        if (isset($postImage))
+        {
+            echo "<img id='postImage' src='post_images/$postId/$postImage'>";
+        }
         echo "<p id='postDate'>$postDate</p>";
 
         if ($postTags != "")

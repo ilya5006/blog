@@ -5,9 +5,7 @@
     $login = $_POST['login'];
     $password = $_POST['password'];
 
-    $authResult = $mysqli->query("SELECT * FROM users WHERE login = '$login' AND password = '$password'");
-    $authResult = $authResult->fetch_row();
-    $authResult = $authResult[0];
+    $authResult = Database::query("SELECT * FROM users WHERE login = '$login' AND password = '$password'");
 
     if (isset($authResult))
     {

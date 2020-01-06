@@ -3,11 +3,12 @@
     require_once "./model/php/database.php";
 
     $idUser = $_SESSION['id_user'];
-    if ($idUser!= 1)
+    if ($idUser != 1)
+    {
         header("Location: index.php");
+    }
         
-    $username = $mysqli->query("SELECT login FROM users WHERE id_user = '$idUser'");
-    $username = $username->fetch_row()[0];
+    $username = Database::query("SELECT login FROM users WHERE id_user = '$idUser'")['login'];
 ?>
 
 <!DOCTYPE html>

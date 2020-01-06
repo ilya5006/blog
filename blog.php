@@ -21,11 +21,13 @@
         <?php
         if (isset($_SESSION['id_user']))
         {
-            $username = $mysqli->query("SELECT login FROM users WHERE id_user = '$userId'");
-            $username = $username->fetch_row()[0];
+            $username = Database::query("SELECT login FROM users WHERE id_user = '$userId'");
+            $username = $username['login'];
             
             if ($isUserAdmin)
+            {
                 echo "<a id='postWriting' href='postWriting.php'>Написать пост</a>";
+            }
 
             echo "<a id='authAndLogout' href='logout.php'>ВЫЙТИ</a>";
             echo "<span id='username'>Вы вошли как:<br> $username</span>";            
@@ -42,10 +44,9 @@
 
     <div id="posts">
         <?php
-        
-        $posts = $mysqli->query("SELECT * FROM posts ORDER BY id_post DESC");
+        $posts = Database::queryAll("SELECT * FROM posts ORDER BY id_post DESC");
 
-        while ($postInfo = $posts->fetch_assoc())
+        foreach ($posts as $postInfo)
         {
             $postId = $postInfo['id_post'];
             $postName = $postInfo['name'];
@@ -68,7 +69,9 @@
                 }
 
                 if (isset($postImage))
-                    echo "<img class='postImage' src='post_images/$postId/$postImage'>";
+                {
+                echo "<img class='postImage' src='post_images/$postId/$postImage'>";
+                }
                 echo "<p class='postDate'>$postDate</p>";
 
                 echo "<hr>";
