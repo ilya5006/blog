@@ -1,6 +1,6 @@
-<?
+<?php
     session_start();
-    require_once "connection.php";
+    require_once "./php/database.php";
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
     <div id="top">
         <span id="title">Мой блог</span>
         <a id="mainPage" href="blog.php">Вернуться на главную</a>
-        <?
+        <?php
         if (isset($_SESSION['id_user']))
         {
             $username = $_SESSION['login'];
@@ -36,11 +36,10 @@
     </div>
 
     <div id="post">
-        <?
+        <?php
         $postName = $_SESSION['postName'];
-        $postInfoQuery = "SELECT * FROM posts WHERE name LIKE '%$postName%'";
-        $postInfoResult = mysqli_query($link, $postInfoQuery);
-        $postInfoResult = mysqli_fetch_assoc($postInfoResult);
+
+        $postInfoResult = Database::query("SELECT * FROM posts WHERE name LIKE '%$postName%'");
 
         $postId = $postInfoResult['id_post'];
         $postTags = $postInfoResult['tags'];
@@ -53,9 +52,10 @@
         echo "<p id='postDate'>$postDate</p>";
 
         if ($postTags != "")
+        {
             echo "<p id='postTags'>$postTags</p>";
-        else
-            echo "<p id='postTags'>Теги отсутствуют</p>";
+        }
+            
     
         echo "<p id='postText'>$postText</p>";
         ?>

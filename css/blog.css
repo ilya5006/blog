@@ -90,7 +90,7 @@ html, body
     width: 5%;
 }
 
-#post
+.post
 {
     border: 1px solid black;
     width: 95%;
@@ -98,12 +98,12 @@ html, body
     margin-top: 10px;
 }
 
-#postText
+.postText
 {
     margin: 20px 0px;
 }
 
-#deletePostForm
+.deletePostForm
 {
     display: inline-block;
     background-image: url("/icons/delete.png");
@@ -112,17 +112,17 @@ html, body
     background-size: 80%;
 }
 
-#deletePostIcon
+.deletePostIcon
 {
     opacity: 0;
 }
 
-#postTags, #postDate
+.postTags, #postDate
 {
     margin: 10px 0px;
 }
 
-#postImage
+.postImage
 {
     display: block;
     width: 400px;

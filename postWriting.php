@@ -1,6 +1,6 @@
-<?
+<?php
     session_start();
-    require_once "connection.php";
+    require_once "./php/database.php";
 
     if ($_SESSION['id_user'] != 1)
         header("Location: index.php");
@@ -19,7 +19,7 @@
         <a id="mainPage" href="blog.php">Вернуться на главную</a>
         <a id='authAndLogout' href='logout.php'>ВЫЙТИ</a>
         
-        <?
+        <?php
         $username = $_SESSION['login'];
         echo "<span id='username'>Вы вошли как:<br> $username</span>";
         ?>

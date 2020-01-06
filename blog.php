@@ -1,6 +1,6 @@
-<?
+<?php
     session_start();
-    require_once "connection.php";
+    require_once "./php/database.php";
 
     if (isset($_POST['postNameButton']))
     {
@@ -19,7 +19,7 @@
     <div id="top">
         <span id="title">Мой блог</span>
         
-        <?
+        <?php
         if (isset($_SESSION['id_user']))
         {
             $username = $_SESSION['login'];
@@ -41,19 +41,17 @@
     </form>
 
     <div id="posts">
-        <?
+        <?php
         $postsInfoQueryResults = [];
 
         if (isset($_POST['searchButton']))
         {
             $tags = $_POST['searchText'];
-            $tags = htmlentities(mysqli_real_escape_string($link, $tags));
             $tagsArray = explode(", ", $tags);
             
             for ($i = 0; $i < count($tagsArray); $i++)
             {
-                $postsInfoQuery = "SELECT * FROM posts WHERE tags LIKE '%$tagsArray[$i]%' ORDER BY id_post DESC";
-                $postsInfoQueryResult = mysqli_query($link, $postsInfoQuery);
+                $postsInfoQueryResult = Database::queryAll("SELECT * FROM posts WHERE tags LIKE '%$tagsArray[$i]%' ORDER BY id_post DESC");
                 array_push($postsInfoQueryResults, $postsInfoQueryResult);
             }
 
@@ -61,35 +59,34 @@
         }
         else
         {
-            $postsInfoQuery = "SELECT * FROM posts ORDER BY id_post DESC";
-            $postsInfoQueryResult = mysqli_query($link, $postsInfoQuery);
+            $postsInfoQueryResult = Database::queryAll("SELECT * FROM posts ORDER BY id_post DESC");
             array_push($postsInfoQueryResults, $postsInfoQueryResult);
         }
 
         for ($i = 0; $i < count($postsInfoQueryResults); $i++)
         {
-            while ($postsInfoResult = mysqli_fetch_assoc($postsInfoQueryResults[$i]))
+            foreach ($postsInfoQueryResults[$i] as $data)
             {
-                $postId = $postsInfoResult['id_post'];
-                $postName = $postsInfoResult['name'];
-                $postTags = $postsInfoResult['tags'];
-                $postText = $postsInfoResult['text'];
-                $postDate = $postsInfoResult['date'];
-                $postImage = $postsInfoResult['image'];
+                $postId = $data['id_post'];
+                $postName = $data['name'];
+                $postTags = $data['tags'];
+                $postText = $data['text'];
+                $postDate = $data['date'];
+                $postImage = $data['image'];
 
-                echo "<div id='post'>";
-                    echo "<form method='POST' id='postName'>";
-                        echo "<input type='submit' id='postNameButton' name='postNameButton' value='$postName'>";
+                echo "<div class='post'>";
+                    echo "<form method='POST' class='postName'>";
+                        echo "<input type='submit' class='postNameButton' name='postNameButton' value='$postName'>";
                         if (isset($_POST['postNameButton']) && $postName == $_POST['postNameButton'])
                         {
                             $_SESSION['postName'] = $postName;
                         }
                     echo "</form>";
                     
-                    if ($_SESSION['id_user'] == 1)
+                    if ($_SESSION['id_user'] == 1) // is user admin? 
                     {
-                        echo "<form method='POST' id='deletePostForm'>";
-                            echo "<input type='submit' id='deletePostIcon' name='deletePost' value='$postId'>";
+                        echo "<form method='POST' class='deletePostForm'>";
+                            echo "<input type='submit' class='deletePostIcon' name='deletePost' value='$postId'>";
 
                             if (isset($_POST['deletePost']) && $postId == $_POST['deletePost'])
                             {
@@ -98,31 +95,26 @@
                                 unlink($imagePath);
                                 rmdir($dirPath);
 
-                                $deletePostQuery = "DELETE FROM posts WHERE id_post = '$postId'";
-                                mysqli_query($link, $deletePostQuery);
+                                $deletePostQuery = Database::queryExecute("DELETE FROM posts WHERE id_post = '$postId'");
                                 echo "<meta http-equiv='refresh' content='0'>";
                             }
                             
                         echo "</form>";
                     }
 
-                    echo "<img id='postImage' src='post_images/$postId/$postImage'>";
-                    echo "<p id='postDate'>$postDate</p>";
+                    echo "<img class='postImage' src='post_images/$postId/$postImage'>";
+                    echo "<p class='postDate'>$postDate</p>";
 
                     echo "<hr>";
 
                     if ($postTags != "")
                     {
-                        echo "<p id='postTags'>$postTags</p>";
-                    }
-                    else
-                    {
-                        echo "<p id='postTags'>Теги отсутствуют</p>";
+                        echo "<p class='postTags'>$postTags</p>";
                     }
                     
                     echo "<hr>";
                     
-                    echo "<p id='postText'>$postText</p>";
+                    echo "<p class='postText'>$postText</p>";
                 echo "</div>";
             }
         }
