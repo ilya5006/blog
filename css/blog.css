@@ -72,6 +72,7 @@ html, body
     height: 85vh;
     box-sizing: border-box;
 }
+
 #search
 {
     display: flex;
@@ -109,7 +110,8 @@ html, body
     background-image: url("/icons/delete.png");
     background-repeat: no-repeat;
     background-position: 100% 60%;
-    background-size: 80%;
+    background-size: 15px 15px;
+    margin-left: 5px;
 }
 
 .deletePostIcon

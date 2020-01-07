@@ -12,7 +12,9 @@
     <meta charset="UTF-8">
     <title>Блог</title>
     <link rel="stylesheet" href="css/blog.css">
-    <script src="./model/js/postsOutput.js" defer></script>
+    <script src="./model/js/postsSearchOutput.js" defer></script>
+    <script src="./model/js/pagesPost.js" defer></script>
+
 </head>
 <body>
     <div id="top">
@@ -21,8 +23,7 @@
         <?php
         if (isset($_SESSION['id_user']))
         {
-            $username = Database::query("SELECT login FROM users WHERE id_user = '$userId'");
-            $username = $username['login'];
+            $username = Database::query("SELECT login FROM users WHERE id_user = '$userId'")['login'];
             
             if ($isUserAdmin)
             {
@@ -33,7 +34,9 @@
             echo "<span id='username'>Вы вошли как:<br> $username</span>";            
         }
         else
+        {
             echo "<a id='authAndLogout' href='auth.php'>ВОЙТИ</a>";
+        }
         ?>
     </div>
 
@@ -63,14 +66,14 @@
                 
                 if ($isUserAdmin)
                 {
-                echo "<form method='POST' action='./model/php/deletePost.php' class='deletePostForm'>";
-                    echo "<input type='submit' class='deletePostIcon' name='deletePost' value='$postId'>";
-                echo "</form>";
+                    echo "<form method='POST' action='./model/php/deletePost.php' class='deletePostForm'>";
+                        echo "<input type='submit' class='deletePostIcon' name='deletePost' value='$postId'>";
+                    echo "</form>";
                 }
 
                 if (isset($postImage))
                 {
-                echo "<img class='postImage' src='post_images/$postId/$postImage'>";
+                    echo "<img class='postImage' src='post_images/$postId/$postImage'>";
                 }
                 echo "<p class='postDate'>$postDate</p>";
 
@@ -87,6 +90,14 @@
             echo "</div>";
         }
         ?>
+        <div id="pagination">
+            <a href="">1</a>
+            <a href="">2</a>
+            <a href="">3</a>
+            <a href="">4</a>
+        </div>
     </div>
+
+    
 </body>
 </html>
