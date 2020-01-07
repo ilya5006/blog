@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 22 2019 г., 02:34
+-- Время создания: Янв 07 2020 г., 03:02
 -- Версия сервера: 8.0.15
 -- Версия PHP: 7.3.2
 
@@ -34,17 +34,8 @@ CREATE TABLE `posts` (
   `tags` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `text` text NOT NULL,
   `date` datetime NOT NULL,
-  `image` text NOT NULL
+  `image` text CHARACTER SET utf8 COLLATE utf8_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `posts`
---
-
-INSERT INTO `posts` (`id_post`, `name`, `tags`, `text`, `date`, `image`) VALUES
-(1, 'NewPost', '', 'NewPost', '2019-07-21 13:17:06', '2592c7a1092ba638c5be6b364114bf3d.png'),
-(2, 'FaFawf', '', 'AFWfaf', '2019-07-21 13:23:10', '3226c646b832364f22bcc9c967935866.jpg'),
-(3, 'Новый Пост ', 'НОВЫЙ, ПОСТ', 'НОООВЫЫЫЙ ПОООСТ', '2019-07-22 01:57:47', '2592c7a1092ba638c5be6b364114bf3d.png');
 
 -- --------------------------------------------------------
 
