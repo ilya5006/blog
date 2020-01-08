@@ -79,18 +79,6 @@ let showPages = (posts, activePage) =>
             pagination.insertAdjacentHTML('beforeEnd', `<a href="#">${pagesQuantity}</a>`);
         }
     }
-
-    // for (let i = 1; i <= pagesQuantity; i++)
-    // {
-    //     if (i == activePage)
-    //     {
-    //         pagination.insertAdjacentHTML('beforeEnd', `<a href="" class="active_page">${i}</a>`);
-    //     }
-    //     else
-    //     {
-    //         pagination.insertAdjacentHTML('beforeEnd', `<a href="">${i}</a>`);
-    //     }
-    // }
 }
 
 let showPosts = (pageNumber, postsPerPage, posts) =>

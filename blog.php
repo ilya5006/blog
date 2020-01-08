@@ -82,6 +82,10 @@
                 {
                     echo "<p class='postTags'>$postTags</p>";
                 }
+                else
+                {
+                    echo "<p class='postTags'>Тэги отсутствуют</p>";
+                }
                 
                 echo "<hr>";
                 
