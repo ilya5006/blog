@@ -4,6 +4,11 @@
     margin: 0px;
 }
 
+a
+{
+    text-decoration: none;
+}
+
 html, body
 {
     width: 100%;
@@ -129,4 +134,21 @@ html, body
     display: block;
     width: 400px;
     height: 200px;
+}
+
+.active_page
+{
+    color: red;
+}
+
+#pagination
+{
+    width: 95%;
+    margin: 0px auto;
+}
+
+#pagination a
+{
+    font-size: 40px;
+    margin-left: 10px;
 }

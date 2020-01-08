@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="css/blog.css">
     <script src="./model/js/postsSearchOutput.js" defer></script>
     <script src="./model/js/pagesPost.js" defer></script>
-
 </head>
 <body>
     <div id="top">
@@ -91,13 +90,8 @@
         }
         ?>
         <div id="pagination">
-            <a href="">1</a>
-            <a href="">2</a>
-            <a href="">3</a>
-            <a href="">4</a>
+            
         </div>
     </div>
-
-    
 </body>
 </html>

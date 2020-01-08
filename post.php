@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Пост</title>
     <link rel="stylesheet" href="css/post.css">
 </head>
 <body>

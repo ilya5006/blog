@@ -15,7 +15,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Написание поста</title>
+    <title>Создание поста</title>
     <link rel="stylesheet" href="css/postWriting.css">
 </head>
 <body>
