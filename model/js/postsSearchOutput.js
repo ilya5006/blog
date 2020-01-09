@@ -1,6 +1,5 @@
 let searchButton = document.querySelector('#searchButton');
 let searchTextInput = document.querySelector('#searchText');
-const allPosts = document.querySelectorAll('.post');
 
 searchButton.addEventListener('click', (event) =>
 {
@@ -37,8 +36,8 @@ searchButton.addEventListener('click', (event) =>
         }
     });
 
-    suitablePosts.forEach((post) =>
-    {
-        posts.insertAdjacentElement('beforeEnd', post);
-    });
+    currentPosts = suitablePosts;
+
+    showPosts(1, 5, currentPosts);
+    showPages(1, currentPosts);
 });

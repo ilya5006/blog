@@ -1,6 +1,9 @@
 <?php
     session_start();
     require_once "./model/php/database.php";
+
+    $idUser = $_SESSION['id_user'];
+    $username = Database::query("SELECT login FROM users WHERE id_user = '$idUser'")['login'];
 ?>
 
 <!DOCTYPE html>
@@ -17,8 +20,6 @@
         <?php
         if (isset($_SESSION['id_user']))
         {
-            $username = $_SESSION['login'];
-            
             if ($_SESSION['id_user'] == 1)
             {
                 echo "<a id='postWriting' href='postWriting.php'>Написать пост</a>";

@@ -12,8 +12,9 @@
     <meta charset="UTF-8">
     <title>Блог</title>
     <link rel="stylesheet" href="css/blog.css">
-    <script src="./model/js/postsSearchOutput.js" defer></script>
+    <script src="./model/js/blog.js" defer></script>
     <script src="./model/js/pagesPost.js" defer></script>
+    <script src="./model/js/postsSearchOutput.js" defer></script>
 </head>
 <body>
     <div id="top">

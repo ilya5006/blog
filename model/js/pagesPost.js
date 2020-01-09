@@ -4,7 +4,7 @@ let calculatePagesQuantity = (postsQuantity, postsPerPage) =>
 
 }
 
-let showPages = (posts, activePage) =>
+let showPages = (activePage, posts) =>
 {
     let pagesQuantity = calculatePagesQuantity(posts.length, 5);
 
@@ -26,7 +26,10 @@ let showPages = (posts, activePage) =>
     }
     else
     {
-        if (activePage > pagesQuantity - 3)
+        let isDotsOnlyStart = activePage > pagesQuantity - 3;
+        let isDotsOnlyEnd =  activePage < 4;
+
+        if (isDotsOnlyStart)
         {
             pagination.insertAdjacentHTML('beforeEnd', `<a href="#">1</a>`);
             pagination.insertAdjacentHTML('beforeEnd', `<a href="#">...</a>`);
@@ -42,7 +45,7 @@ let showPages = (posts, activePage) =>
                 }
             }
         }
-        else if (activePage < 4)
+        else if (isDotsOnlyEnd)
         {
             for (let page = 1; page <= 4; page++)
             {
@@ -98,8 +101,8 @@ let showPosts = (pageNumber, postsPerPage, posts) =>
 
 let pagination = document.querySelector('#pagination');
 
-showPages(allPosts, 1);
-showPosts(1, 5, allPosts);
+showPages(1, currentPosts);
+showPosts(1, 5, currentPosts);
 
 pagination.addEventListener('click', (event) =>
 {
@@ -107,7 +110,7 @@ pagination.addEventListener('click', (event) =>
 
     if (event.target.tagName.toLowerCase() == 'a') 
     {
-        showPosts(parseInt(event.target.textContent), 5, allPosts);
+        showPosts(parseInt(event.target.textContent), 5, currentPosts);
 
         document.querySelector('.active_page').classList.remove('active_page');
         event.target.classList.add('active_page');
