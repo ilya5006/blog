@@ -3,7 +3,9 @@
     require_once "./model/php/database.php";
 
     $idUser = $_SESSION['id_user'];
-    if ($idUser != 1)
+    $isUserAdmin = $_SESSION['id_user'] == 1;
+
+    if (!$isUserAdmin)
     {
         header("Location: index.php");
     }

@@ -3,6 +3,8 @@
     require_once "./model/php/database.php";
 
     $idUser = $_SESSION['id_user'];
+    $isUserAdmin = $_SESSION['id_user'] == 1;
+
     $username = Database::query("SELECT login FROM users WHERE id_user = '$idUser'")['login'];
 ?>
 
