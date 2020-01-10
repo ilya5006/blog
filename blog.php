@@ -2,8 +2,10 @@
     session_start();
     require_once "./model/php/database.php";
 
-    $userId = $_SESSION['id_user'];
+    $idUser = $_SESSION['id_user'];
     $isUserAdmin = $_SESSION['id_user'] == 1;
+
+    $username = Database::query("SELECT login FROM users WHERE id_user = '$idUser'")['login'];
 ?>
 
 <!DOCTYPE html>
@@ -17,28 +19,7 @@
     <script src="./model/js/postsSearchOutput.js" defer></script>
 </head>
 <body>
-    <div id="top">
-        <span id="title">Мой блог</span>
-        
-        <?php
-        if (isset($_SESSION['id_user']))
-        {
-            $username = Database::query("SELECT login FROM users WHERE id_user = '$userId'")['login'];
-            
-            if ($isUserAdmin)
-            {
-                echo "<a id='postWriting' href='postWriting.php'>Написать пост</a>";
-            }
-
-            echo "<a id='authAndLogout' href='logout.php'>ВЫЙТИ</a>";
-            echo "<span id='username'>Вы вошли как:<br> $username</span>";            
-        }
-        else
-        {
-            echo "<a id='authAndLogout' href='auth.php'>ВОЙТИ</a>";
-        }
-        ?>
-    </div>
+    <?php require_once './view/top.php'?>
 
     <form id="search">
         <input type="text" id="searchText" placeholder="Поиск" name="searchText">

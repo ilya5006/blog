@@ -7,7 +7,7 @@
     {
         header("Location: index.php");
     }
-        
+
     $username = Database::query("SELECT login FROM users WHERE id_user = '$idUser'")['login'];
 ?>
 
@@ -19,13 +19,7 @@
     <link rel="stylesheet" href="css/postWriting.css">
 </head>
 <body>
-    <div id="top">
-        <span id="title">Мой блог</span>
-        <a id="mainPage" href="blog.php">Вернуться на главную</a>
-        <a id='authAndLogout' href='logout.php'>ВЫЙТИ</a>
-        
-        <span id='username'>Вы вошли как:<br> <?php echo $username; ?> </span>
-    </div>
+    <?php require_once './view/top.php'; ?>
 
     <form action="./model/php/postSend.php" method="POST" enctype="multipart/form-data" id="post">
         <input id="postName" type="text" name="postName" placeholder="Введите навзание поста" required>
