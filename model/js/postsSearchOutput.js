@@ -13,7 +13,7 @@ searchButton.addEventListener('click', (event) =>
     allPosts.forEach((post) =>
     {
         // Сначала ищем совпадения в загаловке поста
-        let postTitle = post.querySelector('input[name=postNameButton]').value;
+        let postTitle = post.querySelector('.post_name').textContent;
         let searchText = searchTextInput.value;
 
         let searchTextRegExp = new RegExp(searchText , 'i');

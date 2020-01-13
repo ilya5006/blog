@@ -40,7 +40,7 @@
             $postImage = $postInfo['image'];
 
             echo "<div class='post'>";
-                echo "<a href='./post.php?id_post=$postId'>$postName</a>";
+                echo "<a href='./post.php?id_post=$postId' class='post_name'>$postName</a>";
                 if ($isUserAdmin)
                 {
                     echo "<form method='POST' action='./model/php/deletePost.php' class='deletePostForm'>";

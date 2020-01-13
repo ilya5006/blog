@@ -1,7 +1,6 @@
 let calculatePagesQuantity = (postsQuantity, postsPerPage) =>
 {
     return Math.ceil(postsQuantity / postsPerPage);
-
 }
 
 let showPages = (activePage, posts) =>
