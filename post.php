@@ -20,7 +20,7 @@
 
     <div id="post">
         <?php
-        $postId = $_POST['post_id'];
+        $postId = $_GET['id_post'];
         $postInfoResult = Database::query("SELECT * FROM posts WHERE id_post = '$postId'");
 
         $postId = $postInfoResult['id_post'];
