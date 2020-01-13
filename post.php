@@ -29,19 +29,19 @@
         $postDate = $postInfoResult['date'];
         $postImage = $postInfoResult['image'];
 
-        echo "<h2 id='postName'>$postName</h2>";
+        echo "<h2 id='post_name'>$postName</h2>";
         if (isset($postImage))
         {
-            echo "<img id='postImage' src='post_images/$postId/$postImage'>";
+            echo "<img id='post_image' src='post_images/$postId/$postImage'>";
         }
-        echo "<p id='postDate'>$postDate</p>";
+        echo "<p id='post_date'>$postDate</p>";
 
         if ($postTags != "")
         {
-            echo "<p id='postTags'>$postTags</p>";
+            echo "<p id='post_tags'>$postTags</p>";
         }
 
-        echo "<p id='postText'>$postText</p>";
+        echo "<p id='post_text'>$postText</p>";
         ?>
     </div>
 

@@ -22,7 +22,7 @@ body, html
     font-weight: bold;
 }
 
-#mainPage
+#main_page
 {
     text-decoration: none;
     background-color: grey;
@@ -33,12 +33,12 @@ body, html
     float: left;
 }
 
-#mainPage:visited
+#main_page:visited
 {
     color: blue;
 }
 
-#authAndLogout
+#auth_and_logout
 {
     line-height: 50px;
     text-decoration: none;
@@ -57,7 +57,7 @@ body, html
     margin-right: 20px;
 }
 
-#authAndLogout:visited
+#auth_and_logout:visited
 {
     color: blue;
 }
@@ -76,12 +76,12 @@ textarea
     height: 200px;
 }
 
-#postName, #postTags
+#post_name, #post_tags
 {
     height: 30px;
 }
 
-#postSubmit
+#post_submit
 {
     height: 50px;
 }

@@ -22,7 +22,7 @@ html
     font-weight: bold;
 }
 
-#mainPage
+#main_page
 {
     text-decoration: none;
     background-color: grey;
@@ -33,12 +33,12 @@ html
     float: left;
 }
 
-#mainPage:visited
+#main_page:visited
 {
     color: blue;
 }
 
-#postWriting
+#post_writing
 {
     text-decoration: none;
     float: left;
@@ -51,12 +51,12 @@ html
     line-height: 50px;
 }
 
-#postWriting:visited
+#post_writing:visited
 {
     color: blue;
 }
 
-#authAndLogout
+#auth_and_logout
 {
     line-height: 50px;
     text-decoration: none;
@@ -75,7 +75,7 @@ html
     margin-right: 20px;
 }
 
-#authAndLogout:visited
+#auth_and_logout:visited
 {
     color: blue;
 }
@@ -87,20 +87,20 @@ html
     width: 90%;
 }
 
-#postName, #postDate, #postTags
+#post_name, #post_date, #post_tags
 {
     border: 1px solid black;
     margin: 10px 0px;
 }
 
-#postText 
+#post_text 
 {
     border: 1px solid black;
     margin-top: 10px;
     text-align: center;
 }
 
-#postImage
+#post_image
 {
     width: 400px;
     height: 200px;

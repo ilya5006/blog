@@ -27,7 +27,7 @@ html, body
     font-weight: bold;
 }
 
-#postWriting
+#post_writing
 {
     text-decoration: none;
     float: left;
@@ -38,12 +38,12 @@ html, body
     line-height: 50px;
 }
 
-#postWriting:visited
+#post_writing:visited
 {
     color: blue;
 }
 
-#authAndLogout
+#auth_and_logout
 {
     line-height: 50px;
     text-decoration: none;
@@ -62,7 +62,7 @@ html, body
     margin-right: 20px;
 }
 
-#authAndLogout:visited
+#auth_and_logout:visited
 {
     color: blue;
 }
@@ -84,14 +84,14 @@ html, body
     flex-direction: row;
 }
 
-#searchText
+#search_text
 {
     width: 95%;
     height: 40px;
     font-size: 20px;
 }
 
-#searchButton
+#search_button
 {
     width: 5%;
 }
@@ -104,12 +104,12 @@ html, body
     margin-top: 30px;
 }
 
-.postText
+.post_text
 {
     margin: 20px 0px;
 }
 
-.deletePostForm
+.delete_post_form
 {
     display: inline-block;
     background-image: url("/icons/delete.png");
@@ -119,17 +119,17 @@ html, body
     margin-left: 5px;
 }
 
-.deletePostIcon
+.delete_post_icon
 {
     opacity: 0;
 }
 
-.postTags, #postDate
+.post_tags, #post_date
 {
     margin: 10px 0px;
 }
 
-.postImage
+.post_image
 {
     display: block;
     width: 400px;

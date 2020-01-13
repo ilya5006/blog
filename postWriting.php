@@ -24,11 +24,11 @@
     <?php require_once './view/top.php'; ?>
 
     <form action="./model/php/postSend.php" method="POST" enctype="multipart/form-data" id="post">
-        <input id="postName" type="text" name="postName" placeholder="Введите навзание поста" required>
-        <textarea id="postText" name="postText" placeholder="Введите текст" required></textarea>
-        <input id="postTags" type="text" name="postTags" placeholder="Введите теги">
-        <input id="postImage" type="file" name="postImage">
-        <input id="postSubmit" type="submit">
+        <input id="post_name" type="text" name="post_name" placeholder="Введите навзание поста" required>
+        <textarea id="post_text" name="post_text" placeholder="Введите текст" required></textarea>
+        <input id="post_tags" type="text" name="post_tags" placeholder="Введите теги">
+        <input id="post_image" type="file" name="post_image">
+        <input id="post_submit" type="submit">
     </form>
 </body>
 </html>

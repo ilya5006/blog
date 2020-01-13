@@ -22,8 +22,8 @@
     <?php require_once './view/top.php'?>
 
     <form id="search">
-        <input type="text" id="searchText" placeholder="Поиск" name="searchText">
-        <input type="submit" id="searchButton" value="Найти" name="searchButton">
+        <input type="text" id="search_text" placeholder="Поиск" name="search_text">
+        <input type="submit" id="search_button" value="Найти" name="search_button">
     </form>
 
     <div id="posts">
@@ -43,31 +43,31 @@
                 echo "<a href='./post.php?id_post=$postId' class='post_name'>$postName</a>";
                 if ($isUserAdmin)
                 {
-                    echo "<form method='POST' action='./model/php/deletePost.php' class='deletePostForm'>";
-                        echo "<input type='submit' class='deletePostIcon' name='deletePost' value='$postId'>";
+                    echo "<form method='POST' action='./model/php/deletePost.php' class='delete_post_form'>";
+                        echo "<input type='submit' class='delete_post_icon' name='delete_post' value='$postId'>";
                     echo "</form>";
                 }
 
                 if (isset($postImage))
                 {
-                    echo "<img class='postImage' src='post_images/$postId/$postImage'>";
+                    echo "<img class='post_image' src='./post_images/$postId/$postImage'>";
                 }
-                echo "<p class='postDate'>$postDate</p>";
+                echo "<p class='post_date'>$postDate</p>";
 
                 echo "<hr>";
 
                 if ($postTags != "")
                 {
-                    echo "<p class='postTags'>$postTags</p>";
+                    echo "<p class='post_tags'>$postTags</p>";
                 }
                 else
                 {
-                    echo "<p class='postTags'>Тэги отсутствуют</p>";
+                    echo "<p class='post_tags'>Тэги отсутствуют</p>";
                 }
                 
                 echo "<hr>";
                 
-                echo "<p class='postText'>$postText</p>";
+                echo "<p class='post_text'>$postText</p>";
             echo "</div>";
         }
         ?>

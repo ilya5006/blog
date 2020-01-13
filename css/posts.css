@@ -16,13 +16,13 @@ html
     flex-direction: row;
 }
 
-#searchText
+#search_text
 {
     width: 95%;
     height: 40px;
 }
 
-#searchButton
+#search_button
 {
     width: 5%;
 }
@@ -35,7 +35,7 @@ html
     margin-top: 10px;
 }
 
-#deletePostForm
+#delete_post_form
 {
     display: inline-block;
     background-image: url("/icons/delete.png");
@@ -44,17 +44,17 @@ html
     background-size: 80%;
 }
 
-#deletePostIcon
+#delete_post_icon
 {
     opacity: 0;
 }
 
-#postTags, #postDate
+#post_tags, #post_date
 {
     margin: 10px 0px;
 }
 
-#postImage
+#post_image
 {
     display: block;
     width: 400px;

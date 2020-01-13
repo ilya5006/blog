@@ -1,5 +1,5 @@
-let searchButton = document.querySelector('#searchButton');
-let searchTextInput = document.querySelector('#searchText');
+let searchButton = document.querySelector('#search_button');
+let searchTextInput = document.querySelector('#search_text');
 
 searchButton.addEventListener('click', (event) =>
 {
@@ -26,7 +26,7 @@ searchButton.addEventListener('click', (event) =>
         } // Если совпадений в загаловке не найдено, ищем их в тегах
         else
         {
-            let postTags = post.querySelector('.postTags').textContent;
+            let postTags = post.querySelector('.post_tags').textContent;
             let isPostTagsWithSameSearchText = postTags.match(searchTextRegExp);
 
             if (isPostTagsWithSameSearchText)

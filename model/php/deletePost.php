@@ -1,7 +1,7 @@
 <?php
 require_once './database.php';
 
-$postId = $_POST['deletePost'];
+$postId = $_POST['delete_post'];
 $postImage = Database::query("SELECT image FROM posts WHERE id_post = '$postId'")['image'];
 
 $imagePath = '../../post_images/' . $postId . '/' . $postImage;
